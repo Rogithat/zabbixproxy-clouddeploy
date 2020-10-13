@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "googlecompute",
-      "project_id": "fluted-gantry-291716",
+      "project_id": "your_project_ID",
       "source_image": "ubuntu-1804-bionic-v20200317",
       "image_name":"zabbix-proxy-97834234289342897",
       "ssh_username": "root",
