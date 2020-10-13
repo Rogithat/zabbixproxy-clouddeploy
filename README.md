@@ -1,1 +1,1 @@
-A simple project made to study a multi-cloud instances deploy method using packer and shell script
+A simple project made to study custom images deploy on a multi-cloud enviroment using Packer, Terraform and Shell script

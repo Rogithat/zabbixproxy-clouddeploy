@@ -1,0 +1,27 @@
+{
+	"builders": [{
+		"type": "azure-arm",
+
+		"client_id": "",
+		"client_secret": "",
+		"tenant_id": "",
+		"subscription_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx",
+
+		"managed_image_resource_group_name": "Packer-RG",
+		"managed_image_name": "Zabbix-proxy-template",
+
+		"os_type": "Linux",
+		"image_publisher": "Canonical",
+		"image_offer": "UbuntuServer",
+		"image_sku": "18.04-LTS",
+
+		"location": "East US",
+		"vm_size": "Standard_S2"
+	}],
+	"provisioners": [
+        {
+            "type": "shell",
+            "script": "../../Scripts/install.sh"
+        }
+    ]
+    }
