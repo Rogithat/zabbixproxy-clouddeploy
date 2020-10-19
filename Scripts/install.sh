@@ -28,7 +28,7 @@ sleep 5s
 sudo percona-release setup -y ps80
 sudo apt update -y
 
-#Exporting DEBIAN_FRONTEND to unnatended so percona-server-server can be installed unattended
+#Exporting DEBIAN_FRONTEND to noninteractive so percona-server-server can be installed unattended
 #Replace the field your_password with a secure password
 export DEBIAN_FRONTEND=noninteractive
 sudo package="percona-server-server"
