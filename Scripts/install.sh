@@ -3,6 +3,7 @@
 #Automated installation of zabbix-proxy using percona 8.0
 
 sudo apt update -y
+#sudo apt install debconf-utils -y
 sudo apt upgrade -y
 
 #Making a dir to storage deb repos
@@ -24,20 +25,31 @@ sudo apt update -y
 
 clear
 echo -e "\e[1;31m Installing Percona \e[0m"
-sleep 5s
+sleep 1s
+
 sudo percona-release setup -y ps80
 sudo apt update -y
 
-#Exporting DEBIAN_FRONTEND to unnatended so percona-server-server can be installed unattended
-#Replace the field your_password with a secure password
-export DEBIAN_FRONTEND=noninteractive
-sudo package="percona-server-server"
-c1="$package percona-server-server/root-pass password"
-sudo debconf-set-selections <<< "$c1 your_password"
-c2="$package percona-server-server/re-root-pass password"
-sudo debconf-set-selections <<< "$c2 your_password"
+#Exporting DEBIAN_FRONTEND to noninteractive so percona-server-server can be installed unattended
+#Replace the field password with a secure password
 
+package="percona-server-server"
+c1="$package percona-server-server/root-pass password"
+sudo debconf-set-selections <<< "$c1 password"
+c2="$package percona-server-server/re-root-pass password"
+sudo debconf-set-selections <<< "$c2 password"
+c3="$package percona-server-server/default-auth-override select"
+sudo debconf-set-selections <<< "$c3 Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)"
+
+
+#sleep 2s
+echo -e "\e[1;31m Installing Percona \e[0m"
+
+apt install debconf-utils -y
+
+export DEBIAN_FRONTEND=noninteractive
 sudo apt install percona-server-server -y
+#sudo apt install percona-server-server -y
 
 echo 'Installing Zabbix-proxy'
 sudo apt install zabbix-proxy-mysql -y
@@ -45,7 +57,7 @@ sudo apt install zabbix-proxy-mysql -y
 echo 'Configuring mysql'
 
 #Query to create zabbix proxy db and configure zabbix db user with root privileges
-sudo mysql -uroot -p'your_password' -e "CREATE DATABASE zabbix_proxy; CREATE USER 'zabbix'@'localhost' identified by 'zabbix_password';  GRANT ALL ON *.* TO 'zabbix'@localhost; FLUSH PRIVILEGES;"
+sudo mysql -uroot -p'password' -e "CREATE DATABASE zabbix_proxy; CREATE USER 'zabbix'@'localhost' identified by 'zabbix_password';  GRANT ALL ON *.* TO 'zabbix'@localhost; FLUSH PRIVILEGES;"
 
 sudo zcat /usr/share/doc/zabbix-proxy-mysql/schema.sql.gz | mysql -uzabbix -p'zabbix_password'
 
