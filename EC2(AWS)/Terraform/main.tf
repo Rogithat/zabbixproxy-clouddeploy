@@ -32,7 +32,7 @@ resource "aws_route_table_association" "rta_subnet_public" {
   route_table_id = aws_route_table.rtb_public.id
 }
 resource "aws_security_group" "sg_zabbix_proxy" {
-  name   = "sg_zabbix-proxy"
+  name   = "zabbix-proxy-sg"
   #vpc_id = aws_vpc.vpc.id
 
   # SSH access from the VPC
@@ -70,11 +70,11 @@ resource "aws_instance" "web" {
   instance_type               = "t3.small"
   #subnet_id                   = aws_subnet.subnet_public.id
   vpc_security_group_ids      = [aws_security_group.sg_zabbix_proxy.id]
-  key_name = "sysadmin-labs"
+  #key_name = "key"
   associate_public_ip_address = true
 
   tags = {
-    Name = "Zabbix-proxy-TF-test2"
+    Name = "Zabbix-proxy"
   }
 }
 

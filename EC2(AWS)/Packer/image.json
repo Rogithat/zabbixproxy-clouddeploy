@@ -1,8 +1,8 @@
 {
   "variables": {
-      "aws_access_key": "you_key",
-      "aws_secret_key": "your_secret",
-      "token": "your_token",
+      "aws_access_key": "access_key",
+      "aws_secret_key": "secret_key",
+      "token": "token",
       "aws_region": "us-east-1"
   },
   "builders": [
@@ -25,7 +25,7 @@
           },
           "instance_type": "t3.small",
           "ssh_username": "ubuntu",
-          "ami_name": "zabbix-proxy-test-TF2"
+          "ami_name": "zabbix-proxy-ami"
       }
   ],
   "provisioners": [
