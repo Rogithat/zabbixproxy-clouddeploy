@@ -66,7 +66,7 @@ resource "aws_security_group" "sg_zabbix_proxy" {
 }
 
 resource "aws_instance" "web" {
-  ami                         = "ami-0e55ce9ee830b5359"
+  ami                         = "<YOUR_PACKER_AMI>"
   instance_type               = "t3.small"
   #subnet_id                   = aws_subnet.subnet_public.id
   vpc_security_group_ids      = [aws_security_group.sg_zabbix_proxy.id]
