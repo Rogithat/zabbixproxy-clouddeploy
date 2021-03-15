@@ -15,7 +15,7 @@ sudo apt install gnupg2 -y
 echo 'Adding Percona updated repositories'
 sudo wget https://repo.percona.com/apt/percona-release_latest.$(lsb_release -sc)_all.deb
 echo 'Adding Zabbix 5.0 repositories'
-sudo wget https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+bionic_all.deb
+sudo wget https://repo.zabbix.com/zabbix/5.2/ubuntu/pool/main/z/zabbix/zabbix-agent_5.2.3-1+ubuntu14.04_amd64.deb
 
 echo 'Enabling repositories...'
 sudo dpkg -i *.deb
